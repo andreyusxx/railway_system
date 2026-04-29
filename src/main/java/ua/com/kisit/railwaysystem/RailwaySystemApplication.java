@@ -19,10 +19,15 @@ public class RailwaySystemApplication {
     @Bean
     public CommandLineRunner demo(TrainRepository repository) {
         return (args) -> {
-            // Збереження тестового потяга
-            repository.deleteAll();
-            repository.save(new Train(null, "Київ", LocalDateTime.now().plusDays(1), 550.0));
-            System.out.println("Тестові дані завантажено успішно!");
+            repository.deleteAll(); // Очищаємо, щоб не було дублікатів при перезапуску
+
+            repository.save(new Train(null, "Київ - Львів", LocalDateTime.now().plusHours(5), 650.0));
+            repository.save(new Train(null, "Одеса - Харків", LocalDateTime.now().plusHours(12), 820.0));
+            repository.save(new Train(null, "Дніпро - Ужгород", LocalDateTime.now().plusDays(1), 950.0));
+            repository.save(new Train(null, "Київ - Івано-Франківськ", LocalDateTime.now().plusHours(8), 450.0));
+            repository.save(new Train(null, "Миколаїв - Київ", LocalDateTime.now().plusHours(15), 380.0));
+
+            System.out.println("База даних успішно наповнена 5-ма рейсами!");
         };
     }
 }

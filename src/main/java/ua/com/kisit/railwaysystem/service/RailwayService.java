@@ -20,13 +20,14 @@ public class RailwayService {
 
     @Autowired
     private PassengerRepository passengerRepository;
-
-    @Cacheable("trains")
-    public List<Train> searchTrainsByDestination(String destination) {
-        return trainRepository.findByDestinationAndActiveTrue(destination);
-    }
+    
     public List<Ticket> findTicketsByPassengerId(Long passengerId) {
         return ticketRepository.findByPassengerId(passengerId);
+    }
+    // @Cacheable("trains")
+    public List<Train> searchTrainsByDestination(String destination) {
+        String cleanDest = destination.trim();
+        return trainRepository.findByDestinationContainingIgnoreCaseAndActiveTrue(cleanDest);
     }
     public List<Train> findAllTrains() {
         return trainRepository.findAll();

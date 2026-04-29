@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ua.com.kisit.railwaysystem.entity.Passenger;
 import ua.com.kisit.railwaysystem.entity.Ticket;
+import ua.com.kisit.railwaysystem.entity.Train;
 import ua.com.kisit.railwaysystem.repository.TrainRepository;
 import ua.com.kisit.railwaysystem.service.RailwayService;
 
@@ -31,10 +32,10 @@ public class TrainController {
     }
 
     @GetMapping("/search")
-    public String search(@RequestParam String dest, Model model, HttpSession session) {
-        session.setAttribute("lastSearch", dest);
-        model.addAttribute("trains", railwayService.searchTrainsByDestination(dest));
-        model.addAttribute("lastSearch", dest);
+    public String search(@RequestParam String dest, Model model) {
+        List<Train> result = railwayService.searchTrainsByDestination(dest);
+        model.addAttribute("trains", result); // Саме "trains", щоб таблиця оновилася
+        model.addAttribute("lastSearch", dest); // Для синього банера зверху
         return "trains";
     }
 
@@ -55,7 +56,6 @@ public class TrainController {
     }
     @GetMapping("/my-tickets")
     public String viewMyTickets(Model model) {
-        // Отримуємо першого пасажира (як ми робили для купівлі)
         List<Passenger> allPassengers = railwayService.findAllPassengers();
 
         if (!allPassengers.isEmpty()) {
@@ -65,7 +65,7 @@ public class TrainController {
             model.addAttribute("passenger", allPassengers.get(0));
         }
 
-        return "my-tickets"; // Будемо створювати файл my-tickets.ftlh
+        return "my-tickets";
     }
 
 }

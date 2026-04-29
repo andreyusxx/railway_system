@@ -10,5 +10,9 @@ public interface TrainRepository extends JpaRepository<Train, Long> {
 
     List<Train> findByDestination(String destination);
 
+    List<Train> findByActiveTrue();
+
+    List<Train> findByDestinationAndActiveTrue(String destination);
+
     List<Train> findByPriceLessThan(Double price);
 }

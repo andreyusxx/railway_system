@@ -16,14 +16,38 @@
         </div>
     </div>
 </nav>
+<div class="container mt-3">
+    <#if successMessage??>
+        <div class="alert alert-success alert-dismissible fade show shadow-sm" role="alert">
+            <i class="bi bi-check-circle me-2"></i> ${successMessage}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    </#if>
 
+    <#if errorMessage??>
+        <div class="alert alert-danger shadow-sm" role="alert">
+            ${errorMessage}
+        </div>
+    </#if>
+</div>
 <div class="container">
     <#if lastSearch??>
         <div class="alert alert-info shadow-sm" role="alert">
             🔍 Ви нещодавно шукали квитки до міста: <strong>${lastSearch}</strong>
         </div>
     </#if>
-
+    <div class="card shadow-sm mb-4">
+        <div class="card-body">
+            <form action="/search" method="get" class="row g-3">
+                <div class="col-md-10">
+                    <input type="text" name="dest" class="form-control" placeholder="Куди їдемо? (наприклад: Львів)" required>
+                </div>
+                <div class="col-md-2">
+                    <button type="submit" class="btn btn-primary w-100">Знайти</button>
+                </div>
+            </form>
+        </div>
+    </div>
     <div class="card shadow-sm">
         <div class="card-header bg-white py-3">
             <h3 class="card-title mb-0 text-primary">Доступні рейси</h3>
@@ -48,7 +72,10 @@
                         <td><strong>${train.price} грн</strong></td>
                         <td class="text-end">
                             <button class="btn btn-sm btn-outline-primary me-2">Деталі</button>
-                            <button class="btn btn-sm btn-success">Купити квиток</button>
+                            <form action="/buy" method="post" style="display:inline;">
+                                <input type="hidden" name="trainId" value="${train.id}">
+                                <button type="submit" class="btn btn-sm btn-success">Купити квиток</button>
+                            </form>
                         </td>
                     </tr>
                 </#list>

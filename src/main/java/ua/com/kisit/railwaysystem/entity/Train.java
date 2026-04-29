@@ -9,6 +9,8 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Train {
+    @Column(name = "is_active")
+    private Boolean active = true;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

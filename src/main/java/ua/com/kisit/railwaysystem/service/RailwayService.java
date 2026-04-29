@@ -31,4 +31,7 @@ public class RailwayService {
 
         return ticketRepository.save(ticket);
     }
+    public List<Train> findAllTrains() {
+        return trainRepository.findAll();
+    }
 }

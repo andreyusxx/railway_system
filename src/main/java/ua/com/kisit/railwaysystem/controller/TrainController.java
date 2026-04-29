@@ -14,11 +14,22 @@ public class TrainController {
     @Autowired
     private RailwayService railwayService;
 
+    @GetMapping("/")
+    public String index() {
+        return "redirect:/trains";
+    }
+
+    @GetMapping("/trains")
+    public String viewAllTrains(Model model) {
+        model.addAttribute("trains", railwayService.findAllTrains());
+        return "trains";
+    }
+
     @GetMapping("/search")
     public String search(@RequestParam String dest, Model model, HttpSession session) {
         session.setAttribute("lastSearch", dest);
-
         model.addAttribute("trains", railwayService.searchTrainsByDestination(dest));
+        model.addAttribute("lastSearch", dest);
         return "trains";
     }
 }

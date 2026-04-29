@@ -12,7 +12,7 @@
         <a class="navbar-brand" href="/">🚆 Railway System</a>
         <div class="navbar-nav">
             <a class="nav-link active" href="/trains">Всі потяги</a>
-            <a class="nav-link" href="#">Мій профіль</a>
+            <a class="nav-link" href="/my-tickets">Мої квитки</a>
         </div>
     </div>
 </nav>

@@ -25,7 +25,9 @@ public class RailwayService {
     public List<Train> searchTrainsByDestination(String destination) {
         return trainRepository.findByDestinationAndActiveTrue(destination);
     }
-
+    public List<Ticket> findTicketsByPassengerId(Long passengerId) {
+        return ticketRepository.findByPassengerId(passengerId);
+    }
     public List<Train> findAllTrains() {
         return trainRepository.findAll();
     }

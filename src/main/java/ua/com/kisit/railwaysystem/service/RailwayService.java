@@ -20,20 +20,28 @@ public class RailwayService {
 
     @Autowired
     private PassengerRepository passengerRepository;
-    
+
     public List<Ticket> findTicketsByPassengerId(Long passengerId) {
         return ticketRepository.findByPassengerId(passengerId);
     }
-    // @Cacheable("trains")
+
+    @Cacheable("trains")
     public List<Train> searchTrainsByDestination(String destination) {
         String cleanDest = destination.trim();
         return trainRepository.findByDestinationContainingIgnoreCaseAndActiveTrue(cleanDest);
     }
+
     public List<Train> findAllTrains() {
         return trainRepository.findAll();
     }
+
     public List<Passenger> findAllPassengers() {
         return passengerRepository.findAll();
+    }
+
+    public Train findTrainById(Long id) {
+        return trainRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Рейс №" + id + " не знайдено"));
     }
     @Transactional
     public void buyTicket(Long trainId, Long passengerId) {

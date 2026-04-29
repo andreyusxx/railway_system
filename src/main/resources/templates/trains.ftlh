@@ -71,7 +71,7 @@
                         <td>${train.departureTime}</td>
                         <td><strong>${train.price} грн</strong></td>
                         <td class="text-end">
-                            <button class="btn btn-sm btn-outline-primary me-2">Деталі</button>
+                            <a href="/train/${train.id}" class="btn btn-sm btn-outline-primary me-2">Деталі</a>
                             <form action="/buy" method="post" style="display:inline;">
                                 <input type="hidden" name="trainId" value="${train.id}">
                                 <button type="submit" class="btn btn-sm btn-success">Купити квиток</button>

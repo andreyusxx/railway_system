@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ua.com.kisit.railwaysystem.entity.Passenger;
@@ -37,6 +38,13 @@ public class TrainController {
         model.addAttribute("trains", result); // Саме "trains", щоб таблиця оновилася
         model.addAttribute("lastSearch", dest); // Для синього банера зверху
         return "trains";
+    }
+
+    @GetMapping("/train/{id}")
+    public String showTrainDetails(@PathVariable Long id, Model model) {
+        Train train = railwayService.findTrainById(id);
+        model.addAttribute("train", train);
+        return "train-details";
     }
 
     @PostMapping("/buy")

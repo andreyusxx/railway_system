@@ -20,6 +20,7 @@ public class RailwaySystemApplication {
     public CommandLineRunner demo(TrainRepository repository) {
         return (args) -> {
             // Збереження тестового потяга
+            repository.deleteAll();
             repository.save(new Train(null, "Київ", LocalDateTime.now().plusDays(1), 550.0));
             System.out.println("Тестові дані завантажено успішно!");
         };

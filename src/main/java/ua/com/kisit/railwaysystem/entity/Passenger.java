@@ -1,27 +1,37 @@
 package ua.com.kisit.railwaysystem.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
 import java.util.List;
 
+@Getter @Setter
+@NoArgsConstructor @AllArgsConstructor
 @Entity
 @Table(name = "passengers")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class Passenger {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
-    private String fullName;
+    private String firstName;
+    private String lastName;
 
-    @Column(unique = true, nullable = false)
+    @NotEmpty(message = "Email не може бути порожнім")
+    @Email(message = "Некоректний формат Email")
     private String email;
 
     private String phone;
 
-    @OneToMany(mappedBy = "passenger", cascade = CascadeType.ALL)
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @OneToMany(mappedBy = "passenger")
     private List<Ticket> tickets;
+
+    public String getFullName() {
+        return firstName + " " + lastName;
+    }
 }

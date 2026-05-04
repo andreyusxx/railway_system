@@ -17,16 +17,25 @@ public class TicketService {
         this.ticketRepository = ticketRepository;
     }
 
+    // Отримати всі квитки (для звіту в адмінці)
     public List<Ticket> getAllTickets() {
         return ticketRepository.findAll();
     }
 
-    // Наприклад, анулювання квитка адміністратором
-    public void cancelTicket(Long id) {
-        Ticket ticket = ticketRepository.findById(id).orElse(null);
-        if (ticket != null) {
-            // Тут може бути логіка повернення місця в потяг
-            ticketRepository.delete(ticket);
-        }
+    // Знайти квиток за ID
+    public Ticket getTicketById(Long id) {
+        return ticketRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Квиток не знайдено"));
+    }
+
+    // Видалити квиток (наприклад, при поверненні)
+    public void deleteTicket(Long id) {
+        ticketRepository.deleteById(id);
+    }
+
+    // Оновити статус або дані квитка (аналог updateOrder)
+    public void updateTicket(Ticket ticket) {
+        // Тут можна додати логіку, наприклад, позначити квиток як "Використаний"
+        ticketRepository.save(ticket);
     }
 }

@@ -27,10 +27,5 @@ public class AdminController {
 
         return "admin/dashboard";
     }
-    @GetMapping("/trains")
-    public String manageTrains(Model model) {
-        // Передаємо список усіх потягів
-        model.addAttribute("allTrains", trainRepository.findAll());
-        return "admin/trains";
-    }
+
 }

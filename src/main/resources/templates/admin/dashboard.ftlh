@@ -10,7 +10,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
     <div class="container">
-        <a class="navbar-brand" href="#">Railway Admin</a>
+        <a class="navbar-brand" href="/admin/dashboard">Railway Admin</a>
         <div class="navbar-nav ms-auto">
             <span class="nav-link text-light">Вітаємо, <b>${username!"Адмін"}</b></span>
             <a class="nav-link btn btn-danger btn-sm text-white ms-2" href="/logout">Вихід</a>
@@ -23,15 +23,17 @@
 
     <div class="row mb-4">
         <div class="col-md-4">
-            <div class="card bg-primary text-white shadow-sm">
-                <div class="card-body">
-                    <h5 class="card-title"><i class="bi bi-train-front"></i> Всього рейсів</h5>
-                    <p class="card-text display-6">${trainsCount}</p>
+            <a href="/admin/trains" class="text-decoration-none">
+                <div class="card bg-primary text-white shadow-sm h-100">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="bi bi-train-front"></i> Всього рейсів</h5>
+                        <p class="card-text display-6">${trainsCount}</p>
+                    </div>
                 </div>
-            </div>
+            </a>
         </div>
         <div class="col-md-4">
-            <div class="card bg-success text-white shadow-sm">
+            <div class="card bg-success text-white shadow-sm h-100">
                 <div class="card-body">
                     <h5 class="card-title"><i class="bi bi-people"></i> Користувачів</h5>
                     <p class="card-text display-6">${usersCount}</p>
@@ -43,7 +45,9 @@
     <div class="card shadow-sm">
         <div class="card-header bg-white d-flex justify-content-between align-items-center">
             <h5 class="mb-0">Список активних рейсів</h5>
-            <button class="btn btn-primary btn-sm">Додати новий рейс</button>
+            <a href="/admin/trains" class="btn btn-primary btn-sm">
+                <i class="bi bi-plus-lg"></i> Управління рейсами
+            </a>
         </div>
         <div class="card-body p-0">
             <table class="table table-hover mb-0">
@@ -73,8 +77,9 @@
                         </td>
                         <td>
                             <div class="btn-group">
-                                <button class="btn btn-outline-primary btn-sm"><i class="bi bi-pencil"></i></button>
-                                <button class="btn btn-outline-danger btn-sm"><i class="bi bi-trash"></i></button>
+                                <a href="/admin/trains" class="btn btn-outline-primary btn-sm">
+                                    <i class="bi bi-pencil"></i>
+                                </a>
                             </div>
                         </td>
                     </tr>

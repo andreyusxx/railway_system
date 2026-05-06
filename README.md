@@ -75,11 +75,11 @@ Run the generated JAR file from the target directory:
 java -jar target/railway-system-0.0.1-SNAPSHOT.jar
 ```
 ### 🏗 Project Structure
-ua.com.kisit.railwaysystem.config: Security and MVC configurations.
-ua.com.kisit.railwaysystem.entity: Database models (User, Role, Passenger, Train).
-ua.com.kisit.railwaysystem.repository: Data access layers (JPA Repositories).
-ua.com.kisit.railwaysystem.service: Business logic and security implementation.
-ua.com.kisit.railwaysystem.controller: Web request handling.
+* ua.com.kisit.railwaysystem.config: Security and MVC configurations.
+* ua.com.kisit.railwaysystem.entity: Database models (User, Role, Passenger, Train).
+* ua.com.kisit.railwaysystem.repository: Data access layers (JPA Repositories).
+* ua.com.kisit.railwaysystem.service: Business logic and security implementation.
+* ua.com.kisit.railwaysystem.controller: Web request handling.
 
 🔑 Default CredentialsUpon the first startup, the application automatically initializes the following accounts:
 Role            Username            Password

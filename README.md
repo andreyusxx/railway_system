@@ -82,6 +82,7 @@ java -jar target/railway-system-0.0.1-SNAPSHOT.jar
 * ua.com.kisit.railwaysystem.controller: Web request handling.
 
 🔑 Default CredentialsUpon the first startup, the application automatically initializes the following accounts:
-Role            Username            Password
-Administrator   andrii              admin123
-Standard User   manager             12345
+| Role | Username | Password |
+| :--- | :---: | ---: |
+| Administrator | andrii | admin123 |
+| Standard User | manager | 12345 |

@@ -41,3 +41,47 @@ Before you begin, ensure you have the following installed:
 Create a new schema in your MySQL instance:
 ```sql
 CREATE DATABASE railway_db;
+```
+
+### 2. Application Properties
+Configure your connection details in src/main/resources/application.properties:Properties# Server settings
+```java
+server.port=8081
+
+# Database settings
+spring.datasource.url=jdbc:mysql://localhost:3306/railway_db?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+spring.datasource.username=YOUR_USERNAME
+spring.datasource.password=YOUR_PASSWORD
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+
+# JPA/Hibernate settings
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQLDialect
+
+# Security settings
+spring.jpa.open-in-view=false
+```
+
+### 3. Building the Project
+Use Maven to package the application into a JAR file:
+```bash
+mvn clean package
+```
+
+### 4. Running the Application
+Run the generated JAR file from the target directory:
+```bash
+java -jar target/railway-system-0.0.1-SNAPSHOT.jar
+```
+### 🏗 Project Structure
+ua.com.kisit.railwaysystem.config: Security and MVC configurations.
+ua.com.kisit.railwaysystem.entity: Database models (User, Role, Passenger, Train).
+ua.com.kisit.railwaysystem.repository: Data access layers (JPA Repositories).
+ua.com.kisit.railwaysystem.service: Business logic and security implementation.
+ua.com.kisit.railwaysystem.controller: Web request handling.
+
+🔑 Default CredentialsUpon the first startup, the application automatically initializes the following accounts:
+Role            Username            Password
+Administrator   andrii              admin123
+Standard User   manager             12345
